@@ -23,14 +23,14 @@ SCENE_SCALE = .68        # size of the whole scene inside the 1080x1920 frame
 STAR_Y = 545             # where the tree's star lands (below the greeting)
 TITLE_SCALE = .72        # greeting size
 TITLE_Y = 285            # greeting top; Reels' top bar covers roughly y < 250
-GAIN = 1.0               # colour intensity
-SATURATION = .55         # extra colour punch on lit glyphs
-GLOW = .42               # bloom strength
+GAIN = .62              # colour intensity
+SATURATION = .30         # extra colour punch on lit glyphs
+GLOW = .26               # bloom strength
 
-base.PATCH_SHARE = .52
-base.PATCH_MIX = .82
+base.PATCH_SHARE = .15
+base.PATCH_MIX = .60
 base.SWATCH = np.array([[255,222,30],[40,225,255],[255,50,200],[255,130,20],
-                        [255,60,60],[150,255,60],[255,255,255]], dtype=np.float32)
+                        [255,60,60]], dtype=np.float32)
 
 # Original scene geometry (tree star top at y=419 in the 1920px frame).
 SRC_STAR_Y = 419
