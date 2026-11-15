@@ -8,7 +8,7 @@ if ! command -v uv >/dev/null 2>&1; then
   export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 fi
 echo ">> Đang render video (khoảng 1-3 phút)..."
-uv run render_v10.py --output noel-ascii.mp4 || { echo "Render thất bại."; read -r -p "Nhấn Enter để thoát"; exit 1; }
+uv run render_v11.py --output noel-ascii.mp4 || { echo "Render thất bại."; read -r -p "Nhấn Enter để thoát"; exit 1; }
 echo ">> Xong: $(pwd)/noel-ascii.mp4"
 if command -v open >/dev/null 2>&1; then open noel-ascii.mp4
 elif command -v xdg-open >/dev/null 2>&1; then xdg-open noel-ascii.mp4; fi

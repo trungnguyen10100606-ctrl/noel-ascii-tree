@@ -16,7 +16,7 @@ if errorlevel 1 (
   )
 )
 echo ^>^> Dang render video ^(khoang 1-3 phut^)...
-uv run render_v10.py --output noel-ascii.mp4
+uv run render_v11.py --output noel-ascii.mp4
 if errorlevel 1 (
   echo Render that bai.
   pause

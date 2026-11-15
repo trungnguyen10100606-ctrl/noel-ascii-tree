@@ -30,17 +30,22 @@ Chờ khoảng 1–3 phút, video là `noel-ascii.mp4` trong thư mục và sẽ
 Đã có `uv` thì chỉ cần một lệnh trong thư mục repo (giống nhau trên Mac, Windows, Linux):
 
 ```bash
-uv run render_v10.py
+uv run render_v11.py
 ```
 
 Chưa có `uv`: Mac/Linux `curl -LsSf https://astral.sh/uv/install.sh | sh`; Windows PowerShell `irm https://astral.sh/uv/install.ps1 | iex`.
 
+### Chỉnh bố cục & độ rực
+
+Đầu file `render_v11.py` có các núm chỉnh: `SCENE_SCALE` (độ lớn cây), `STAR_Y` (vị trí ngôi sao), `TITLE_Y` (vị trí chữ chào),
+`SATURATION` và `GLOW` (độ rực và độ phát sáng). Mặc định giữ mọi thứ trong vùng an toàn của Reels (cách mép trên khoảng 250px, mép dưới khoảng 340px).
+
 ### Tùy chọn
 
 ```bash
-uv run render_v10.py --output video-cua-toi.mp4      # đặt tên file
-uv run render_v10.py --snapshot 24.89 --output khung.png   # xuất 1 khung hình tại giây 24.89
-uv run render_v10.py --duration 10                   # chỉ render 10 giây đầu
+uv run render_v11.py --output video-cua-toi.mp4      # đặt tên file
+uv run render_v11.py --snapshot 24.89 --output khung.png   # xuất 1 khung hình tại giây 24.89
+uv run render_v11.py --duration 10                   # chỉ render 10 giây đầu
 ```
 
 ### Không dùng `uv`?
@@ -48,14 +53,15 @@ uv run render_v10.py --duration 10                   # chỉ render 10 giây đ�
 Python 3.9+:
 ```bash
 pip install -r requirements.txt
-python render_v10.py
+python render_v11.py
 ```
 
 ## Cấu trúc
 
 | File | Vai trò |
 |---|---|
-| `render_v10.py` | Điểm vào. Giữ cảnh v8, thêm sắc pixel-glitch nhẹ cho cây và bóng |
+| `render_v11.py` | **Điểm vào.** Màu rực rỡ, phát sáng, bố cục an toàn cho Instagram Reels (tránh thanh trên, caption và nút bên phải) |
+| `render_v10.py` | Bản nền: cảnh v8 + sắc pixel-glitch nhẹ cho cây và bóng |
 | `render_v8.py`, `greeting_v8.py` | Chữ MERRY CHRISTMAS dạng ký tự có hiệu ứng |
 | `render_v7.py` | Bóng tròn nhiều màu, xoay không chập chờn |
 | `render_v6.py`, `star_v6.py` | Dựng tán cây theo giai đoạn, dải đèn, ngôi sao |
