@@ -45,7 +45,7 @@ class ColoredOrnamentRenderer(StagedFirRenderer):
     def make_ornaments(self):
         rng = np.random.default_rng(8019)
         rows = (68, 82, 95, 108, 122, 136, 150, 160)
-        counts = (3, 4, 5, 6, 7, 8, 9, 10)
+        counts = (2, 3, 3, 4, 5, 5, 6, 7)   # fewer baubles keeps the tree readable
         sizes = (37, 40, 43, 47, 49, 51, 54, 53)
         smooth_profile = np.convolve(self.tree.half, [1,2,3,4,3,2,1], mode='same')/16
         lamps = []

@@ -209,9 +209,10 @@ def _deer(draw, x, y, phase, lead=False, red_nose=False):
                     (98, 51), (89, 47)]), fill=CREAM)
     draw.line(p([(88, 34), (93, 34)]), fill=SHADOW, width=5)
     if red_nose:
-        draw.ellipse((x + 102, y + 36, x + 115, y + 49), fill="#9b1239")
-        draw.ellipse((x + 103, y + 36, x + 114, y + 47), fill="#ff1538")
-        draw.ellipse((x + 105, y + 37, x + 110, y + 41), fill="#ff7868")
+        # Large and saturated so it survives being sampled into character cells.
+        draw.ellipse((x + 100, y + 32, x + 121, y + 53), fill="#b00020")
+        draw.ellipse((x + 101, y + 32, x + 119, y + 50), fill="#ff0a2a")
+        draw.ellipse((x + 104, y + 35, x + 111, y + 41), fill="#ff8a7a")
     else:
         draw.ellipse((*p([(105, 39)])[0], *p([(112, 46)])[0]),
                      fill=PINK if lead else dark)
@@ -221,7 +222,7 @@ def _deer(draw, x, y, phase, lead=False, red_nose=False):
 
 
 def draw_sleigh(t, red_nose=False):
-    """Return a 485 × 155 RGBA frame with an optional red nose on the lead deer."""
+    """Return a 485 × 155 RGBA frame with an optional red nose on both deer."""
     canvas = Image.new("RGBA", SIZE)
     draw = ImageDraw.Draw(canvas)
     phase = 1.38 * t
@@ -236,7 +237,7 @@ def draw_sleigh(t, red_nose=False):
     draw.line(rope_a, fill=GOLD, width=4, joint="curve")
     draw.line(rope_b, fill=GOLD, width=4, joint="curve")
 
-    _deer(draw, 221, rear_y, phase)
+    _deer(draw, 221, rear_y, phase, red_nose=red_nose)
     _deer(draw, 368, front_y, lead_phase, lead=True, red_nose=red_nose)
     _sled_and_rider(draw)
     return canvas

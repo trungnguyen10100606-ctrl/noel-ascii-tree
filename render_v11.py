@@ -55,12 +55,23 @@ def feather(width, height, margin):
 class VividSafeRenderer(base.SoftGlitchRenderer):
     def __init__(self, source):
         super().__init__(source)
+        self.thin_gems()
         self.sparkles = sparkle_field()
         self.sparkle_font = ImageFont.truetype(FONT_BOLD, 20)
         self.scene_w, self.scene_h = round(WIDTH*SCENE_SCALE), round(HEIGHT*SCENE_SCALE)
         self.scene_x = (WIDTH-self.scene_w)//2
         self.scene_y = round(STAR_Y - SRC_STAR_Y*SCENE_SCALE)
         self.scene_mask = feather(self.scene_w, self.scene_h, 46)
+
+    def thin_gems(self):
+        """Keep every other crystal/bauble group (a front piece plus its rear twin)."""
+        groups = []
+        for gem in self.tree.gems:
+            if not gem.rear or not groups:
+                groups.append([gem])
+            else:
+                groups[-1].append(gem)
+        self.tree.gems = [gem for i, group in enumerate(groups) if i % 2 == 0 for gem in group]
 
     def paint_title(self, frame, t):
         return frame           # greeting is placed separately, after the scene is scaled
