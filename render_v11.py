@@ -23,17 +23,17 @@ from render_v3 import main
 render_v3.FONT = FONT_BOLD            # heavier glyphs read brighter at phone size
 
 # Tuning knobs -------------------------------------------------------------
-GLYPH_W, GLYPH_H = 12, 20  # glyph cell in pixels (1080/12 = 90 columns); bigger = chunkier code
-GLYPH_FONT, GLYPH_BASE = 20, 15
-SCENE_SCALE = .72          # tree layout size (glyphs stay the same size)
-STAR_Y = 535               # where the tree's star lands, below the greeting
-TITLE_SCALE = .78          # greeting size
+GLYPH_W, GLYPH_H = 9, 15   # glyph cell in pixels (1080/9 = 120 columns); bigger = chunkier code
+GLYPH_FONT, GLYPH_BASE = 14, 11
+SCENE_SCALE = .80          # tree layout size (glyphs stay the same size)
+STAR_Y = 520               # where the tree's star lands, below the greeting
+TITLE_SCALE = .75          # greeting size
 TITLE_Y = 262              # greeting top; Reels' top bar covers roughly y < 250
-GAIN = 1.35                # colour intensity
-SATURATION = .35           # extra colour punch on lit glyphs
-GLOW = .24                 # bloom strength
+GAIN = .62                # colour intensity
+SATURATION = .30           # extra colour punch on lit glyphs
+GLOW = .26                 # bloom strength
 
-base.PATCH_SHARE = .22
+base.PATCH_SHARE = .15
 base.PATCH_MIX = .60
 base.SWATCH = np.array([[255,222,30],[40,225,255],[255,50,200],[255,130,20],
                         [255,60,60]], dtype=np.float32)
@@ -44,7 +44,7 @@ SRC_STAR_X, SRC_STAR_Y = 540, 419   # tree star in the unzoomed 1080x1920 scene
 def sparkle_field():
     rng = np.random.default_rng(77)
     pts = []
-    for _ in range(150):
+    for _ in range(190):
         pts.append((rng.uniform(10, WIDTH-10), rng.uniform(20, HEIGHT-20), rng.uniform(0, math.tau),
                     rng.choice(['+', '*', '+', '·']), rng.uniform(1.4, 3.2),
                     [(255,255,255), (255,240,170), (170,235,255), (255,190,235)][int(rng.integers(4))]))
@@ -57,10 +57,9 @@ class VividSafeRenderer(base.SoftGlitchRenderer):
     def __init__(self, source):
         super().__init__(source)
         self.thin_gems()
-        self.open_spaces = self.open_spaces*.12      # big glyphs: keep the fir dense, like the reference
         self.zoom_lookup()
         self.sparkles = sparkle_field()
-        self.sparkle_font = ImageFont.truetype(FONT_BOLD, 26)
+        self.sparkle_font = ImageFont.truetype(FONT_BOLD, 20)
 
     def zoom_lookup(self):
         """Re-map screen glyph cells onto the scene so the tree lands at SCENE_SCALE / STAR_Y."""
