@@ -37,8 +37,10 @@ Chưa có `uv`: Mac/Linux `curl -LsSf https://astral.sh/uv/install.sh | sh`; Win
 
 ### Chỉnh bố cục & độ rực
 
-Đầu file `render_v11.py` có các núm chỉnh: `SCENE_SCALE` (độ lớn cây), `STAR_Y` (vị trí ngôi sao), `TITLE_Y` (vị trí chữ chào),
-`SATURATION` và `GLOW` (độ rực và độ phát sáng). Mặc định giữ mọi thứ trong vùng an toàn của Reels (cách mép trên khoảng 250px, mép dưới khoảng 340px).
+Đầu file `render_v11.py` có các núm chỉnh: `GLYPH_W`/`GLYPH_H` (kích thước ký tự, mặc định 12×20 px, gần giống video code-art trên Instagram),
+`SCENE_SCALE` (độ lớn cây, ký tự không bị nhỏ theo), `STAR_Y` (vị trí ngôi sao), `TITLE_Y` (vị trí chữ chào),
+`GAIN`, `SATURATION`, `GLOW` (độ sáng, độ rực, độ phát sáng). Mặc định giữ mọi thứ trong vùng an toàn của Reels
+(cách mép trên khoảng 250px, mép dưới khoảng 340px). Video xuất chuẩn màu BT.709 để Instagram không làm lệch màu.
 
 ### Tùy chọn
 

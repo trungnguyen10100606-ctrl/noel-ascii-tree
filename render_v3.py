@@ -143,7 +143,9 @@ def main(renderer_type=ProjectedRenderer, review_times=FRAME_TIMES, crf='16', du
     encoder_args = [
         ffmpeg_exe(),'-y','-loglevel','error','-f','rawvideo','-pixel_format','rgb24',
         '-video_size',f'{WIDTH}x{HEIGHT}','-framerate',str(FPS),'-i','-','-an',
-        '-c:v','libx264','-pix_fmt','yuv420p','-preset','fast','-crf',crf,
+        '-vf','scale=out_color_matrix=bt709:out_range=tv,format=yuv420p',
+        '-colorspace','bt709','-color_primaries','bt709','-color_trc','bt709','-color_range','tv',
+        '-c:v','libx264','-pix_fmt','yuv420p','-preset','medium','-crf',crf,
         '-movflags','+faststart',args.output,
     ]
     with subprocess.Popen(encoder_args, stdin=subprocess.PIPE) as encoder:
